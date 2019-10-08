@@ -22,6 +22,7 @@ export default Controller.extend({
   date: null,
   time: null,
 
+
   restaurantId: alias("model.restaurant.id"),
   numberOfPeople: 1,
 
@@ -36,6 +37,14 @@ export default Controller.extend({
   breakfastMenu: alias("menu.breakfast"),
   lunchMenu: alias("menu.lunch"),
   dinnerMenu: alias("menu.dinner"),
+
+  latitude: computed("model.restaurant.latitude", function() {
+      return this.get("model.restaurant.latitude");
+  }),
+
+  longitude: computed("model.restaurant.longitude", function() {
+        return this.get("model.restaurant.longitude");
+    }),
 
   openTime: computed("model.restaurant.openTime", function() {
     return formatTime(this.get("model.restaurant.openTime"));

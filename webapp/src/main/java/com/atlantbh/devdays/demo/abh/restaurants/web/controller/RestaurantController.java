@@ -14,6 +14,7 @@ import com.atlantbh.devdays.demo.abh.restaurants.service.responses.ReservationIn
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.transaction.annotation.Transactional;
@@ -127,5 +128,14 @@ public class RestaurantController {
   public Restaurant update(@PathVariable("id") Long id, @RequestBody RestaurantRequest request)
       throws EntityNotFoundServiceException {
     return service.update(id, request);
+  }
+
+  @Transactional
+  @DeleteMapping("{id}")
+  @ResponseStatus(HttpStatus.NO_CONTENT)
+  public void deleteRes(@PathVariable("id") Long id)
+          throws EntityNotFoundServiceException {
+     service.delete(id);
+
   }
 }

@@ -1,5 +1,11 @@
 import Component from "@ember/component";
 
+function validateEmail(email) {
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    console.log(re.test(String(email).toLowerCase()));
+    return re.test(String(email).toLowerCase());
+}
+
 export default Component.extend({
   useLinks: true,
 
@@ -39,6 +45,11 @@ export default Component.extend({
         return {
           message: `${friendlyName} is required`
         };
+      }
+      if(propertyName === "email" && !validateEmail(userPropertyValue)){
+        return {
+           message: `${friendlyName} not valid`
+         };
       }
     }
   },

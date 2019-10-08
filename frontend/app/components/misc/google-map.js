@@ -50,8 +50,8 @@ export default Component.extend({
       this.set("defaultMerkerPosition", markerPosition);
     } else {
       markerPosition = new google.maps.LatLng(
-        this.get("markerLat"),
-        this.get("markerLng")
+        this.get("markerLat") ? this.get("markerLat") : 0,
+        this.get("markerLng") ? this.get("markerLng") : 0
       );
     }
 
@@ -77,5 +77,7 @@ export default Component.extend({
 
     polygon.setMap(map);
     this.set("polygon", polygon);
+
+    console.log(marker);
   }
 });
