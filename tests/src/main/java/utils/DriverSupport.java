@@ -33,7 +33,9 @@ public class DriverSupport {
             options.addArguments("--start-maximized");
             DesiredCapabilities capabilities = new DesiredCapabilities();
             capabilities.setCapability("acceptInsecureCerts",true);
+            System.setProperty("webdriver.gecko.driver","C:\\Users\\SUser\\Desktop\\abh-restaurants\\abh-restaurants\\tests\\geckodriver.exe");
             driver = new FirefoxDriver(capabilities);
+
 
         } else if (browser.equals("chrome")) {
             ChromeOptions options = new ChromeOptions();

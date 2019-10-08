@@ -17,14 +17,14 @@ public class MakeReservation extends TestBase {
     private static final String ADDRESS = "Pijacna 118";
     private static final String PASSWORD = "1234";
     private static final String HEADER_TEXT = "Make a free reservation";
-
+    private static final String COMPLETE_TEXT = "Complete your reservation";
 
     @Test(priority = 0)
     public void openRestaurantsHomePage() {
         new HomePage(driver)
                 .clickLoginButton(2);
     }
-
+/*
     @Test(priority = 1)
     public void openRegistrationPage() {
         new LoginPage(driver)
@@ -63,12 +63,14 @@ public class MakeReservation extends TestBase {
                 .clickLoginButton(2);
     }
 
+ */
+
     @Test(priority = 7)
     public void loginToRestaurantsPage() {
         SimpleDateFormat formatter = new SimpleDateFormat("ddMMHHmm");
         Date date = new Date();
         new LoginPage(driver)
-                .loginToRestaurants(formatter.format(date)+EMAIL, PASSWORD);
+                .loginToRestaurants(EMAIL, PASSWORD);
     }
     @Test(priority = 8)
     public void checkUserLoginIsSuccessful(){
@@ -82,4 +84,21 @@ public class MakeReservation extends TestBase {
                 .openRestaurantsPage(1);
     }
 
+    @Test(priority = 10)
+    public void reservationRestaurants(){
+        new Restaurants(driver)
+                .clickOnFirst();
+    }
+
+    @Test(priority = 11)
+    public void reservationRestaurant(){
+        new Restaurant(driver)
+                .reserveRestaurant();
+    }
+
+    @Test(priority = 12)
+    public void reservationComplete(){
+        Assert.assertTrue(new ReservationDetails(driver)
+                .checkTitle(COMPLETE_TEXT));
+    }
 }
